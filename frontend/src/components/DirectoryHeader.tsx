@@ -10,7 +10,7 @@ export function DirectoryHeader({
   let parentDir = "";
   const directories = directory
     .split("/")
-    .filter((fragment, index) => index==0 || fragment)
+    .filter((fragment, index) => index===0 || fragment)
     .map((fragment) => {
       if (!parentDir.endsWith("/")) {
         parentDir += "/";
@@ -24,7 +24,7 @@ export function DirectoryHeader({
 
   return (
     <div className="directory-header">
-      <h2>{directories.map((fragment) => (<a onClick={()=>{onSelectDirectory(fragment.link)}}>{fragment.text}</a>))}</h2>
+      <h2>{directories.map((fragment) => (<a key={fragment.link} onClick={()=>{onSelectDirectory(fragment.link)}}>{fragment.text}</a>))}</h2>
     </div>
   );
 }

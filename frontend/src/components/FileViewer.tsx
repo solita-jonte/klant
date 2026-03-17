@@ -10,15 +10,23 @@ export function FileViewer({
   filePath,
   onError,
 }:FileViewerProps) {
+  const [loadingFile, setLoadingFile] = useState(false);
   const [fileData, setFileData] = useState<FileData | null>(null)
+
+  console.log(`FileView loading: ${loadingFile}`);
 
   useEffect(() => {
     if (filePath) {
+      setLoadingFile(true);
       console.log(`FileViewer: filePath changed to ${filePath}`);
       fetchFile(filePath, (fd) => {
         onError?.("");
         setFileData(fd);
-      }, onError);
+        setLoadingFile(false);
+      }, (err) => {
+        onError?.(err);
+        setLoadingFile(false);
+    });
     }
   }, [filePath]);
 
@@ -33,7 +41,9 @@ export function FileViewer({
 
   return (
     <div className="fileview">
-      {content}
+      {loadingFile
+      ? <p className="loading">Loading...</p>
+      : content}
     </div>
   )
 }

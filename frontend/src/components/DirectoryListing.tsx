@@ -16,23 +16,29 @@ export function DirectoryListing({
   onSelectFilePath,
   onError,
 }: DirectoryListingProps) {
+  const [loadingDir, setLoadingDir] = useState(false)
   const [listDirData, setListDirData] = useState<ListDirData>({directory: "", entries: []})
 
- const dir = directory ? directory : "/";
+  const dir = directory ? directory : "/";
 
- useEffect(() => {
+  useEffect(() => {
+    setLoadingDir(true);
     onError?.("");
     listDir(dir, (res) => {
       setListDirData(res);
       onSelectDirectory(dir);
+      setLoadingDir(false);
     }, (err) => {
       onError?.(err);
+      setLoadingDir(false);
     });
   }, [dir]);
 
   return (
     <ul className="directory-listing">
-        {listDirData.entries.map((entry) => {
+      {loadingDir
+      ? <li className="loading">Loading...</li>
+      : listDirData.entries.map((entry) => {
           let dir = listDirData.directory;
           while (dir.endsWith('/')) {
             dir = dir.substring(0, dir.length - 1);
@@ -42,7 +48,8 @@ export function DirectoryListing({
           return (
             <DirectoryEntry key={entry.name} name={entry.name} fullPath={fullPath} isDir={isDirOrLink(entry)} onSelect={onSelect} />
           );
-        })}
+        })
+      }
     </ul>
   );
 }

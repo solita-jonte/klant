@@ -1,5 +1,3 @@
-import React from "react"
-
 export interface DirectoryEntryProps {
     name: string,
     fullPath: string,
@@ -14,7 +12,7 @@ export function DirectoryEntry({
     onSelect,
 }: DirectoryEntryProps) {
     return (
-        <li
+        <li className="entry"
             onClick={() => {
                 onSelect(fullPath);
                 return true;

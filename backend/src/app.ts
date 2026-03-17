@@ -1,5 +1,4 @@
 import express, { type Application, type Request, type Response } from "express";
-import path from "path";
 import fs from "fs";
 import { type DirEntry } from "./DirEntry";
 
@@ -8,19 +7,8 @@ const port: number = 3000;
 
 app.use(express.json());
 
-app.use("/", express.static(path.join(__dirname, "public")));
-// app.get("/", (req: Request, res: Response) => {
-//   res.send("Hello from your Node.js backend (TypeScript)!");
-// });
-// const frontendDistPath = path.join(__dirname, "public");
-// console.log(frontendDistPath);
-// app.use(express.static(frontendDistPath));
-// app.get("klant", (req: Request, res: Response) => {
-//   res.sendFile(path.join(frontendDistPath, "index.html"));
-// });
-
-app.get("/api/path", (req: Request, res: Response) => {
-  const path = req.query.dir as string ?? ".";
+app.get("/api/dir", (req: Request, res: Response) => {
+  const path = req.query.path as string ?? ".";
   const files = fs.readdirSync(path, {withFileTypes: true})
     .map((item): DirEntry => ({
       name: item.name,
@@ -28,6 +16,12 @@ app.get("/api/path", (req: Request, res: Response) => {
       isLink: item.isSymbolicLink(),
     }))
   return res.json(files);
+});
+
+app.get("/api/file", (req: Request, res: Response) => {
+  const path = req.query.path as string;
+  console.log("Fetching file: " + path);
+  return res.sendFile(path);
 });
 
 app.listen(port, () => {

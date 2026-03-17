@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  display: flex;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -20,14 +25,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -52,6 +49,63 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+ul {
+  margin-block: 0;
+  padding: 0;
+}
+
+li {
+  text-align: left;
+  display: block;
+  max-width: 30vw;
+  padding: 0.03em 0.5em;
+  cursor: pointer;
+  user-select: none;
+  overflow: clip;
+}
+
+li:hover {
+  background-color: #bcd;
+  border-radius: 3px;
+}
+
+.logo {
+  max-width: 5em;
+  padding: 1em;
+}
+
+.header, .split {
+  display: flex;
+  align-items: stretch;
+}
+
+.directory-header {
+    padding: 0 1em;
+}
+
+.directory-listing {
+  padding: 0 1em;
+}
+
+.fileview {
+    flex-grow: 1;
+    background: #efede6;
+    border-radius: 1em;
+    display: flex;
+    align-items: flex-start;
+}
+
+.fileview * {
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  padding: 0 1em;
+  overflow: auto;
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import { DirectoryHeader } from './DirectoryHeader'
 import { DirectoryListing } from './DirectoryListing'
 import { FileViewer } from './FileViewer'
 import { KlantHeader } from './KlantHeader'
-import './App.css'
 
 function App() {
   const [filePath, setFilePath] = useState<string | null>(null)
@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       <KlantHeader />
+      <DirectoryHeader directory={directory} onSelectDirectory={setDirectoryIfDifferent}/>
       <div className="split">
         <DirectoryListing directory={directory} onSelectDirectory={setDirectoryIfDifferent} onSelectFilePath={setFilePath} />
         <FileViewer filePath={filePath} />

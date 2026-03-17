@@ -11,7 +11,7 @@ export type ListDirData = {
 
 export function listDir(directory: string, onResult: (result: ListDirData) => void) {
   console.log(`Listing directory: ${directory}`)
-  const url = `/api/path?dir=${encodeURIComponent(directory)}`;
+  const url = `/api/dir?path=${encodeURIComponent(directory)}`;
   fetch(url, {
       method: 'GET',
       headers: {
@@ -20,6 +20,7 @@ export function listDir(directory: string, onResult: (result: ListDirData) => vo
     })
     .then((res) => {
       res.json().then((entries: DirEntry[]) => {
+        // sort directories and files neatly
         entries = entries.sort((a, b) => (b.name.localeCompare(a.name)))
         entries = entries.sort((a, _) => (a.isDir? -1 : 1))
         const result: ListDirData = {

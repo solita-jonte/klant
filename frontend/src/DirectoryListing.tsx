@@ -21,16 +21,16 @@ export const DirectoryListing: React.FC<DirectoryListingProps> = ({
     listDirData.directory = dir;
     listDir(dir, (res) => {
       setListDirData(res);
+      onSelectDirectory(dir);
     });
   }
 
   return (
     <div className="directory-listing">
-      <h2>Directory Listing: {dir}</h2>
       <ul>
           {listDirData.entries.map((entry) => {
-            console.log(`Showing file ${entry.name}`)
-            const fullPath = `${directory}/${entry.name}`
+            const dir = directory == "/" ? "" : directory;
+            const fullPath = `${dir}/${entry.name}`
             const onSelect = entry.isDir? onSelectDirectory : onSelectFilePath;
             return (
               <DirectoryEntry key={entry.name} name={entry.name} fullPath={fullPath} isDir={entry.isDir} onSelect={onSelect} />

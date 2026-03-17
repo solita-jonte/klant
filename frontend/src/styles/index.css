@@ -109,6 +109,10 @@ li:hover::before {
   padding-bottom: 1em;
 }
 
+.split :not(:last-child) {
+  padding-right: 1em;
+}
+
 .directory-header {
     padding: 0 1em;
 }

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { DirectoryHeader } from './DirectoryHeader'
-import { DirectoryListing } from './DirectoryListing'
-import { FileViewer } from './FileViewer'
-import { KlantHeader } from './KlantHeader'
+import { DirectoryHeader } from './components/DirectoryHeader'
+import { DirectoryListing } from './components/DirectoryListing'
+import { FileViewer } from './components/FileViewer'
+import { KlantHeader } from './components/KlantHeader'
 
 function App() {
   const [filePath, setFilePath] = useState<string | null>(null)

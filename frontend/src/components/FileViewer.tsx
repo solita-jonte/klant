@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {fetchFile} from "./fetchFile"
+import {fetchFile} from "../utils/fetch-file"
 
 export interface FileViewerProps {
   filePath: string | null,
@@ -10,10 +10,10 @@ interface FetchElement {
   element: React.ReactElement,
 }
 
-export const FileViewer: React.FC<FileViewerProps> = ({
+export function FileViewer({
   filePath,
-}) => {
-  const [fileElement, setFileElement] = useState<FetchElement>({filePath: "", element: (<p/>)})
+}:FileViewerProps) {
+  const [fileElement, setFileElement] = useState<FetchElement>({filePath: "", element: (<pre>[Click file to view]</pre>)})
 
   if (filePath && filePath != fileElement.filePath) {
     fileElement.filePath = filePath;

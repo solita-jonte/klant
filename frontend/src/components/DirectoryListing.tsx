@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { type ListDirData, listDir } from "./ListDir"
+import { type ListDirData, listDir } from "../utils/list-dir"
 import { DirectoryEntry } from "./DirectoryEntry"
 
 export interface DirectoryListingProps {
@@ -8,11 +8,11 @@ export interface DirectoryListingProps {
   onSelectFilePath: (file: string) => void,
 }
 
-export const DirectoryListing: React.FC<DirectoryListingProps> = ({
+export function DirectoryListing({
   directory,
   onSelectDirectory,
   onSelectFilePath,
-}) => {
+}: DirectoryListingProps) {
   const [listDirData, setListDirData] = useState<ListDirData>({directory: "", entries: []})
 
   const dir = directory ? directory : "/";

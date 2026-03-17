@@ -1,8 +1,4 @@
-export type DirEntry = {
-  name: string;
-  isDir: boolean;
-  isLink: boolean;
-};
+import { type DirEntry } from "@shared/types/DirEntry"
 
 export type ListDirData = {
   directory: string;

@@ -1,6 +1,6 @@
 import express, { type Application, type Request, type Response } from "express";
 import fs from "fs";
-import { type DirEntry } from "./DirEntry";
+import { type DirEntry } from "@shared/types/DirEntry";
 
 const app: Application = express();
 const port: number = 3000;

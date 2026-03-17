@@ -7,12 +7,12 @@ export interface DirectoryEntryProps {
     onSelect: (name: string) => void,
 }
 
-export const DirectoryEntry: React.FC<DirectoryEntryProps> = ({
+export function DirectoryEntry({
     name,
     fullPath,
     isDir,
     onSelect,
-}) => {
+}: DirectoryEntryProps) {
     return (
         <li
             onClick={() => {

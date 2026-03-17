@@ -3,10 +3,10 @@ export interface DirectoryHeaderProps {
   onSelectDirectory: (dir: string) => void,
 }
 
-export const DirectoryHeader: React.FC<DirectoryHeaderProps> = ({
+export function DirectoryHeader({
   directory,
   onSelectDirectory,
-}) => {
+}:DirectoryHeaderProps) {
   let parentDir = "";
   const directories = directory
     .split("/")

@@ -7,7 +7,6 @@ export const DirectoryHeader: React.FC<DirectoryHeaderProps> = ({
   directory,
   onSelectDirectory,
 }) => {
-  console.log("This is what we've got: " + directory);
   let parentDir = "";
   const directories = directory
     .split("/")
@@ -17,7 +16,6 @@ export const DirectoryHeader: React.FC<DirectoryHeaderProps> = ({
         parentDir += "/";
       }
       parentDir += fragment;
-      console.log("Header mapping fragment: " + fragment + ", parentDir=" + parentDir);
       return {
         text: fragment + "/",
         link: `${parentDir}`

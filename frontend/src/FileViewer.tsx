@@ -16,7 +16,6 @@ export const FileViewer: React.FC<FileViewerProps> = ({
   const [fileElement, setFileElement] = useState<FetchElement>({filePath: "", element: (<p/>)})
 
   if (filePath && filePath != fileElement.filePath) {
-    console.log("New file fetch!");
     fileElement.filePath = filePath;
     fetchFile(filePath, (res) => {
       if (res.type == "image") {

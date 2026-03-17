@@ -10,7 +10,6 @@ function App() {
 
   function setDirectoryIfDifferent(dir: string) {
     if (dir != directory) {
-      console.log(`${dir} different from ${directory}`)
       setDirectory(dir);
     }
   }

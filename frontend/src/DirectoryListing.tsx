@@ -17,26 +17,28 @@ export const DirectoryListing: React.FC<DirectoryListingProps> = ({
 
   const dir = directory ? directory : "/";
   if (listDirData.directory != dir) {
-    console.log("New list dir!");
+    const prevDir = listDirData.directory;
     listDirData.directory = dir;
     listDir(dir, (res) => {
-      setListDirData(res);
-      onSelectDirectory(dir);
+      if (res.directory) {
+        setListDirData(res);
+        onSelectDirectory(dir);
+      } else {
+        onSelectDirectory(prevDir);
+      }
     });
   }
 
   return (
-    <div className="directory-listing">
-      <ul>
-          {listDirData.entries.map((entry) => {
-            const dir = directory == "/" ? "" : directory;
-            const fullPath = `${dir}/${entry.name}`
-            const onSelect = entry.isDir? onSelectDirectory : onSelectFilePath;
-            return (
-              <DirectoryEntry key={entry.name} name={entry.name} fullPath={fullPath} isDir={entry.isDir} onSelect={onSelect} />
-            );
-          })}
-      </ul>
-    </div>
+    <ul className="directory-listing">
+        {listDirData.entries.map((entry) => {
+          const dir = directory == "/" ? "" : directory;
+          const fullPath = `${dir}/${entry.name}`
+          const onSelect = entry.isDir? onSelectDirectory : onSelectFilePath;
+          return (
+            <DirectoryEntry key={entry.name} name={entry.name} fullPath={fullPath} isDir={entry.isDir} onSelect={onSelect} />
+          );
+        })}
+    </ul>
   );
 }

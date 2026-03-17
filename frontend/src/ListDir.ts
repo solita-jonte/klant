@@ -19,6 +19,10 @@ export function listDir(directory: string, onResult: (result: ListDirData) => vo
       },
     })
     .then((res) => {
+      if (res.status != 200) {
+        onResult({directory: "", entries: []})
+        return;
+      }
       res.json().then((entries: DirEntry[]) => {
         // sort directories and files neatly
         entries = entries.sort((a, b) => (b.name.localeCompare(a.name)))

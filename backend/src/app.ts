@@ -21,7 +21,7 @@ app.get("/api/dir", (req: Request, res: Response) => {
 app.get("/api/file", (req: Request, res: Response) => {
   const path = req.query.path as string;
   console.log("Fetching file: " + path);
-  return res.sendFile(path);
+  return res.sendFile(path, {dotfiles: "allow"});
 });
 
 app.listen(port, () => {

@@ -85,6 +85,14 @@ li:hover {
     padding: 0 1em;
 }
 
+.directory-header a {
+  color: #000;
+}
+
+.directory-header a:hover {
+  cursor: pointer;
+}
+
 .directory-listing {
   padding: 0 1em;
 }

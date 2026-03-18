@@ -26,8 +26,18 @@ export function DirectoryHeader({
     }, []);
 
   return (
-    <div className="directory-header">
-      <h2>{directories.map((fragment) => (<a key={fragment.link} onClick={()=>{onSelectDirectory(fragment.link)}}>{fragment.text}</a>))}</h2>
+    <div className="py-3">
+      <h2 className="text-2xl">
+        {directories.map((fragment) => (
+          <a
+            className="hover:underline hover:text-blue-700 cursor-pointer"
+            key={fragment.link}
+            onClick={()=>{onSelectDirectory(fragment.link)}}
+          >
+            {fragment.text}
+          </a>
+        ))}
+      </h2>
     </div>
   );
 }

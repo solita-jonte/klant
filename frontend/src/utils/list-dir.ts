@@ -26,7 +26,7 @@ export function listDir(
       res.json().then((entries: DirEntry[]) => {
         // sort directories and files neatly
         entries = entries.sort((a, b) => (b.name.localeCompare(a.name)))
-        entries = entries.sort((a) => (isDirOrLink(a)? -1 : 1))
+        entries = entries.sort((a, b) => (isDirOrLink(a)? -1 : (isDirOrLink(b) ? 1 : -1)))
         const result: ListDirData = {
           directory: directory,
           entries: entries,

@@ -12,7 +12,7 @@ export function DirectoryEntry({
     onSelect,
 }: DirectoryEntryProps) {
     return (
-        <li className="entry"
+        <li className="px-2 py-[0.03rem] hover:bg-blue-100 rounded cursor-pointer user-select-none"
             onClick={() => {
                 onSelect(fullPath);
                 return true;

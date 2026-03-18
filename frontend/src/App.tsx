@@ -21,7 +21,7 @@ function App() {
       <KlantHeader />
       <DirectoryHeader directory={directory} onSelectDirectory={setDirectoryIfDifferent}/>
       <ErrorMessage error={errorMsg} />
-      <div className="split">
+      <div className="flex items-stretch overflow-hidden h-full">
         <DirectoryListing directory={directory} onSelectDirectory={setDirectoryIfDifferent} onSelectFilePath={setFilePath} onError={setErrorMsg} />
         <FileViewer filePath={filePath} onError={setErrorMsg} />
       </div>

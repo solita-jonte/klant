@@ -33,14 +33,14 @@ export function FileViewer({
   let content = (<pre>[Click on file to view]</pre>);
   if (fileData) {
       if (fileData.type === "image") {
-        content = (<img src={fileData.content}></img>);
+        content = (<img className="flex-1 block object-contain w-full h-full w-max-full h-max-full" src={fileData.content}></img>);
       } else {
         content = (<pre>{fileData.content}</pre>);
       }
   }
 
   return (
-    <div className="fileview">
+    <div className="flex-1 overflow-auto p-2 bg-blue-100 rounded-xl">
       {loadingFile
       ? <p className="loading">Loading...</p>
       : content}

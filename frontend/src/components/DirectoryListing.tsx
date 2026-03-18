@@ -39,7 +39,7 @@ export function DirectoryListing({
   }, [dir]);
 
   return (
-    <ul className="directory-listing">
+    <ul className="mr-2 overflow-auto min-w-60 max-w-120 bg-gray-100 rounded-xl">
       {loadingDir
       ? <li className="loading">Loading...</li>
       : listDirData.entries.map((entry) => {

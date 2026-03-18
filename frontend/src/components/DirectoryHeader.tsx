@@ -1,3 +1,8 @@
+type Fragment = {
+  text: string,
+  link: string,
+}
+
 export interface DirectoryHeaderProps {
   directory: string,
   onSelectDirectory: (dir: string) => void,
@@ -7,20 +12,18 @@ export function DirectoryHeader({
   directory,
   onSelectDirectory,
 }:DirectoryHeaderProps) {
-  let parentDir = "";
   const directories = directory
     .split("/")
     .filter((fragment, index) => index===0 || fragment)
-    .map((fragment) => {
-      if (!parentDir.endsWith("/")) {
-        parentDir += "/";
-      }
-      parentDir += fragment;
-      return {
+    .reduce<Fragment[]>((acc, fragment) => {
+      const parentDir = acc.reduce((parDir, frag) => {return parDir + frag.text;}, "");
+      const link = (parentDir.endsWith("/") ? parentDir : parentDir + "/") + fragment;
+      acc.push({
         text: fragment + "/",
-        link: `${parentDir}`
-      }
-    });
+        link,
+      });
+      return acc;
+    }, []);
 
   return (
     <div className="directory-header">

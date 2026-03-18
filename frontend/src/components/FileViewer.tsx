@@ -13,20 +13,20 @@ export function FileViewer({
   const [loadingFile, setLoadingFile] = useState(false);
   const [fileData, setFileData] = useState<FileData | null>(null)
 
-  console.log(`FileView loading: ${loadingFile}`);
-
   useEffect(() => {
     if (filePath) {
-      setLoadingFile(true);
-      console.log(`FileViewer: filePath changed to ${filePath}`);
-      fetchFile(filePath, (fd) => {
-        onError?.("");
-        setFileData(fd);
-        setLoadingFile(false);
-      }, (err) => {
-        onError?.(err);
-        setLoadingFile(false);
-    });
+      const guardRun = async () => {
+        setLoadingFile(true);
+        fetchFile(filePath, (fd) => {
+          onError?.("");
+          setFileData(fd);
+          setLoadingFile(false);
+        }, (err) => {
+          onError?.(err);
+          setLoadingFile(false);
+        });
+      }
+      guardRun();
     }
   }, [filePath]);
 

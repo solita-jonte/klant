@@ -22,16 +22,20 @@ export function DirectoryListing({
   const dir = directory ? directory : "/";
 
   useEffect(() => {
-    setLoadingDir(true);
-    onError?.("");
-    listDir(dir, (res) => {
-      setListDirData(res);
-      onSelectDirectory(dir);
-      setLoadingDir(false);
-    }, (err) => {
-      onError?.(err);
-      setLoadingDir(false);
-    });
+    const guardRun = async () => {
+      setLoadingDir(true);
+      onError?.("");
+      listDir(dir, (res) => {
+        setListDirData(res);
+        onSelectDirectory(dir);
+        setLoadingDir(false);
+      }, (err) => {
+        setListDirData({directory: dir, entries: []});
+        onError?.(err);
+        setLoadingDir(false);
+      });
+    }
+    guardRun();
   }, [dir]);
 
   return (
